@@ -1,6 +1,9 @@
 <template>
   <div class="testcanvas">
     <h3>test canvas</h3>
+		<p>This is a test software renderer I made to explore the mathematic concepts behind rendering in 3D. parses basic obj files exported from blender.</p>
+		<p>If you do not have a working .obj file handy, click to link below to download a file to use with this renderer.</p>
+	    <p><a href="./blender-monkey-hi.obj" download="blender-monkey-hi.obj">Click to download sample .obj</a></p>
 		<!-- <button @click="needsUpdate = true">Update</button> -->
 		<input type="number" v-model="modelScale" width="30px"> Model Scale (Reload to change)
 		<button @click="populateModel">Load Model</button>

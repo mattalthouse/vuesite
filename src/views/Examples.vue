@@ -23,9 +23,7 @@
             <router-link to="./examples/3dmain"><img class="icon-image" src="../img/ascii.jpeg"></router-link>
             <h3>3D Renderer</h3>
             <p>3D rendering using the 2D html 5 canvas. loads in obj files exported from blender.</p>
-            <!-- <p><a href="https://github.com/robertdole/vuesite/tree/master/src/views/3dengine/monkey2.obj">test
-               
-            </a></p> -->
+
             <!-- <router-link to="./examples/testcanvas"><img class="icon-image" src="../img/computerrepair.jpg"></router-link> -->
         </div>
 
