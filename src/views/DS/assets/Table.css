@@ -1,0 +1,163 @@
+body, html {
+    height: 100%; 
+}
+
+.parallax{
+      /* The image used */
+  background-image: url('cubebkg07.png');
+
+  /* Full height */
+  /* height: 100%;  */
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+}
+
+h3 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+TableCell, table, th, td, tr {
+    /*font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /*border: 2px solid black;*/
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 2px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px dashed black;
+    border-right: 1px dashed black;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: left;
+
+}
+
+    tr:hover {
+        background-color: #d7d1c9;
+    }
+
+    tr:nth-child(odd){
+        background-color: #cfcfb6;
+    }
+    tr:nth-child(even) {
+        background-color: #f3f3e5;
+    }
+
+        tr:nth-child(even):hover {
+            background-color: #d7d1c9;
+        }
+
+th {
+    background-color: gainsboro;
+}
+/*th:hover {
+            background-color: #adadaa;
+        }*/
+.edit {
+    position: inherit;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*height: 100%;*/
+    /*width: 100%;*/
+    opacity: 0;
+    transition: .2s ease;
+}
+
+td:hover {
+    background-color: #adadaa;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 7px 5px 0 rgba(0,0,0,0.19);
+}
+
+    td:hover .edit {
+        opacity: 1;
+    }
+
+button {
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: white;
+    font-family: 'Trebuchet MS';
+    border-radius: 6px;
+    border-color: #c74d4d;
+    background-color: #c74d4d;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 1em;
+    border-width: 0px;
+}
+
+    button:hover {
+        color: white;
+        /*font-family: 'Trebuchet MS';*/
+        background-color: #fa9696;
+        border-color: #fa9696;
+        box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 7px 5px 0 rgba(0,0,0,0.19);
+    }
+
+    button.btn-table1 {
+        padding: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: white;
+        font-family: 'Trebuchet MS';
+        border-radius: 3px;
+        background-color: #adadaa;
+    }
+
+i {
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: dimgrey;
+    font-family: 'Trebuchet MS';
+    border-radius: 3px;
+    background-color: #adadaa;
+}
+
+    i:hover {
+        padding: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: black;
+        border-radius: 3px;
+        background-color: #e4e4e4;
+        box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 7px 5px 0 rgba(0,0,0,0.19);
+    }
+
+button.btn-table2 {
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: white;
+    font-family: 'Trebuchet MS';
+    border-radius: 3px;
+    background-color: #6f9fb5;
+}
+
+    button.btn-table2:hover {
+        padding: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: black;
+        border-radius: 3px;
+        background-color: #95bfd3;
+        box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 7px 5px 0 rgba(0,0,0,0.19);
+    }
+
+label, span, input {
+    position: center;
+    font-family: 'Trebuchet MS';
+    align-content: center;
+    padding-right: 20px;
+}

@@ -1,0 +1,45 @@
+﻿<template>
+    <div id="TableCell">
+        <table>
+            <slot name="table-header">
+                <th v-for="cell in TableCell"  v-if="cell.header">{{cell.value}}</th>
+            </slot>
+            <tr>
+                <td v-for="cell in TableCell" v-if="!cell.header">{{cell.value}}</td>
+            </tr>
+        </table>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'TableCell',
+        props: {
+            TableCell: {
+                type: Array,
+                required: true
+            },
+           /* column: {
+                type: String,
+                //required: false,
+            },
+            row: {
+                type: String,
+                //required: false,
+            },
+            value: {
+                type: String,
+                //required: false,
+            },
+            header: {
+                type: Boolean,
+                //required: false,
+            }*/
+        },
+
+    };
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
