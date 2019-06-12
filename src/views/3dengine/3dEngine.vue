@@ -1,23 +1,27 @@
 <template>
   <div class="testcanvas">
-    <h3>test canvas</h3>
-		<p>This is a test software renderer I made to explore the mathematic concepts behind rendering in 3D. parses basic obj files exported from blender.</p>
-		<p>If you do not have a working .obj file handy, click to link below to download a file to use with this renderer.</p>
-	    <p><a href="./blender-monkey-hi.obj" download="blender-monkey-hi.obj">Click to download sample .obj</a></p>
+    <h3>3D OBJ Renderer</h3>
+		<p>This is a test software renderer I made to explore the mathematic concepts behind rendering in 3D. Parses basic obj files exported from blender.</p>
+		<p>If you do not have a working .obj file handy, click one of the buttons below to download a file to use with this renderer.</p>
+		<button @click="loadEx1">Load Cube</button>
+		<button @click="loadEx2">Load Blender Monkey (Low Poly)</button>
+		<button @click="loadEx3">Load Blender Monkey (High Poly)</button>
+	    <!-- <p><a href="./blender-monkey-hi.obj" download="blender-monkey-hi.obj">Click to download sample .obj</a></p> -->
 		<!-- <button @click="needsUpdate = true">Update</button> -->
+				<br/><br/><br/>
 		<input type="number" v-model="modelScale" width="30px"> Model Scale (Reload to change)
-		<button @click="populateModel">Load Model</button>
+		<button @click="populateModel">Reload Model</button>
 		<input type="file" v-on:change="readFile">
 				<br/>
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateX"> Spin Rate X
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateY"> Spin Rate Y
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateZ"> Spin Rate Z
 				<br/>
-		<input type="checkbox" @click="renderPoints = !renderPoints"> Draw Points
-		<input type="checkbox" @click="renderLines = !renderLines"> Draw Lines
-		<input type="checkbox" @click="renderNorms = !renderNorms"> Draw Normals
-		<input type="checkbox" @click="renderPolys = !renderPolys"> Draw Polys
-		<input type="checkbox" @click="renderFPS = !renderFPS"> Show FPS
+		<input type="checkbox" @click="renderPoints = !renderPoints" v-model="renderPoints"> Draw Points
+		<input type="checkbox" @click="renderLines = !renderLines" v-model="renderLines"> Draw Lines
+		<input type="checkbox" @click="renderNorms = !renderNorms" v-model="renderNorms"> Draw Normals
+		<input type="checkbox" @click="renderPolys = !renderPolys" v-model="renderPolys"> Draw Polys
+		<input type="checkbox" @click="renderFPS = !renderFPS" v-model="renderFPS"> Show FPS
 		<input type="color" v-model="lineColor"> Line Color
 				<br/>
     <canvas id="canvas" width=800 height=600></canvas>
@@ -30,6 +34,7 @@ import { loadVerts, loadNorms, loadLines, getFullPolyObj } from './modelLoading'
 import { project, dotProduct, dotProductInit, calcNormPts } from './calculations';
 import { drawPoints, drawLine, drawNormLine, drawPoly, drawFPS } from './drawing';
 import { translateModel, rotateX, rotateY, rotateZ } from './movement';
+import { sampleModel1, sampleModel2, sampleModel3 } from './sampleModel';
 //import './modelLoading';
 export default {
 	name: 'examples',
@@ -43,7 +48,7 @@ export default {
 			cam: {x: 0, y: 0, z:-2000},
 			testx: 50,
 			spinRateX: 0.0,
-			spinRateY: 0.2,
+			spinRateY: 0.05,
 			spinRateZ: 0.0,
 			centerZ: 1500,
 			modelLoaded: false,
@@ -51,7 +56,7 @@ export default {
 			renderPoints: false,
 			renderLines: false,
 			renderNorms: false,
-			renderPolys: false,
+			renderPolys: true,
 			renderFPS: false,
 			lineColor: '#111111',
 			fileStr: "",
@@ -112,9 +117,23 @@ export default {
 				console.log(file);
 				reader.onload = function(e){
 					self.fileStr = e.target.result.split('\n');
+					self.populateModel();
 				};				 
 				reader.readAsText(file);
 
+			},
+
+			loadEx1: function(){
+				this.fileStr = sampleModel1();
+				this.populateModel();
+			},
+			loadEx2: function(){
+				this.fileStr = sampleModel2();
+				this.populateModel();
+			},
+			loadEx3: function(){
+				this.fileStr = sampleModel3();
+				this.populateModel();
 			},
 
 			populateModel: function(){
@@ -132,6 +151,7 @@ export default {
 				this.polyObjs = getFullPolyObj(this.modelObj);
 				this.modelLoaded = true;
 				this.needsUpdate = true;
+				//this.renderPolys = true;
 			}
 
  		},
@@ -142,3 +162,20 @@ export default {
 
 }
 </script>
+
+<style>
+/* .parallax{
+  background-image: url('cubebkg07.png');
+
+  background-attachment: fixed;
+  background-position: center;
+} */
+/* .bkgpad{
+	background-color:antiquewhite;
+	padding: 10px;
+} */
+button{
+	border-style: dotted;
+	border-color: darkgray;
+}
+</style>
