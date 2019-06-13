@@ -1,0 +1,1 @@
+.row{display:block;margin-left:auto;margin-right:auto;width:50%}.column{-webkit-box-flex:25%;-ms-flex:25%;flex:25%;max-width:25%;padding:0 4px}.column img{margin-top:8px;vertical-align:middle}@media screen and (max-width:600px){.column{-webkit-box-flex:100%;-ms-flex:100%;flex:100%;max-width:100%}}
