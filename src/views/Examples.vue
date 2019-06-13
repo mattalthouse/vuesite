@@ -15,12 +15,12 @@
         </div> -->
         <!-- <div class="column"> -->
             <!-- <h3><a href="localhost:8080/views/3dengine/3dmain.html">3d</a></h3> -->
-            <router-link to="./examples/tableapp"><img class="icon-image" src="../img/excel.jpeg"></router-link>
+            <router-link to="./examples/tableapp"><img class="icon-image" width="400px" src="../img/datatable.png"></router-link>
             <h3>Data Tables</h3>
             <p>A data table app that takes a generic json string and converts it into a data table.</p>
             <p>adding or editing cells is only visual. Data is not retained if page is reloaded. </p>
             <br/><br/><br/>
-            <router-link to="./examples/3dmain"><img class="icon-image" src="../img/ascii.jpeg"></router-link>
+            <router-link to="./examples/3dmain"><img class="icon-image" width="300px" src="../img/Suzanne.png"></router-link>
             <h3>3D Renderer</h3>
             <p>3D rendering using the 2D html 5 canvas. loads in obj files exported from blender.</p>
 
@@ -63,11 +63,11 @@ export default {
     max-width: 100%;
   }
 }
-    .icon-image {
+    /* .icon-image {
     
         width: 200px;
         height: 160px;
 
-    }
+    } */
 </style>
 

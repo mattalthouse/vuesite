@@ -3,15 +3,15 @@
     <h3>3D OBJ Renderer</h3>
 		<p>This is a test software renderer I made to explore the mathematic concepts behind rendering in 3D. Parses basic obj files exported from blender.</p>
 		<p>If you do not have a working .obj file handy, click one of the buttons below to download a file to use with this renderer.</p>
-		<button @click="loadEx1">Load Cube</button>
-		<button @click="loadEx2">Load Blender Monkey (Low Poly)</button>
-		<button @click="loadEx3">Load Blender Monkey (High Poly)</button>
+		<button class="button3D" @click="loadEx1">Load Cube</button>
+		<button class="button3D" @click="loadEx2">Load Blender Monkey (Low Poly)</button>
+		<button class="button3D" @click="loadEx3">Load Blender Monkey (High Poly)</button>
 	    <!-- <p><a href="./blender-monkey-hi.obj" download="blender-monkey-hi.obj">Click to download sample .obj</a></p> -->
 		<!-- <button @click="needsUpdate = true">Update</button> -->
 				<br/><br/><br/>
 		<input type="number" v-model="modelScale" width="30px"> Model Scale (Reload to change)
-		<button @click="populateModel">Reload Model</button>
-		<input type="file" v-on:change="readFile">
+		<button class="button3D" @click="populateModel">Reload Model</button>
+		<input type="file" class="button3D" v-on:change="readFile">
 				<br/>
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateX"> Spin Rate X
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateY"> Spin Rate Y
@@ -23,6 +23,7 @@
 		<input type="checkbox" @click="renderPolys = !renderPolys" v-model="renderPolys"> Draw Polys
 		<input type="checkbox" @click="renderFPS = !renderFPS" v-model="renderFPS"> Show FPS
 		<input type="color" v-model="lineColor"> Line Color
+		<input type="range" min="0.1" max="5" step="0.1" v-model="lineThicc"> Line Width
 				<br/>
     <canvas id="canvas" width=800 height=600></canvas>
   </div>
@@ -59,6 +60,7 @@ export default {
 			renderPolys: true,
 			renderFPS: false,
 			lineColor: '#111111',
+			lineThicc: 0.2,
 			fileStr: "",
 			//modelObj: [{}],
 			//polyObjs: []
@@ -91,7 +93,7 @@ export default {
 						if(this.renderLines){
 							drawLine(this.modelObj, canvas, this.clipPlane);
 							canvas.strokeStyle = this.lineColor;
-							canvas.lineWidth = 0.2;
+							canvas.lineWidth = this.lineThicc;
 							canvas.stroke();
 						}
 						if(this.renderNorms)
@@ -164,18 +166,6 @@ export default {
 </script>
 
 <style>
-/* .parallax{
-  background-image: url('cubebkg07.png');
 
-  background-attachment: fixed;
-  background-position: center;
-} */
-/* .bkgpad{
-	background-color:antiquewhite;
-	padding: 10px;
-} */
-button{
-	border-style: dotted;
-	border-color: darkgray;
-}
+@import "3dmain.css";
 </style>
