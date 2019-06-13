@@ -3,18 +3,11 @@ import {normalizeNumber, getMaxOfArray, getMinOfArray, precise } from './calcula
 export function drawLine(obj, context, clipPlane) {
     
     for (var i = 0; i < obj.lines.length; i++){
-        //if(obj.dotProdPoints[i] < 0){
-            //debugger;
             var p = obj.points[obj.lines[i][0]];
-            //scale = fl / (fl + p.z + centerZ);
             if (p.z > clipPlane) {
-                //console.log("drawline: " + lines[i])
-                //console.log(lines[i][0])
-                //console.log(p)
 
                 context.moveTo(p.sx, p.sy);
                 for (var j = 0; j < obj.lines[i].length; j++) {
-                    //console.log("p index: " + lines[i][j]);
                     var nextpoint = j + 1;
                     //var np;
                     if (nextpoint < obj.lines[i].length) {
@@ -39,11 +32,9 @@ export function drawNormLine(obj, context, clipPlane) {
     for(var i=0; i<obj.polyNormalPoints.length;i++){
         var n = obj.polyNormalPoints[i];
         var p = obj.centroids[i];
-        //scale = fl / (fl + p.z + centerZ);
+
         if (n.z > clipPlane) {
-            //console.log("drawline: " + lines[i])
-            //console.log(lines[i][0])
-            //console.log(p)
+
             context.beginPath();
             context.moveTo(p.sx, p.sy);
             context.lineTo(n.sx, n.sy);
@@ -61,7 +52,7 @@ export function drawPoly(polyobjs, obj, context, clipPlane, useLightPoint) {
     polyobjs.sort(sortZ);
     
     for (var i = 0; i < polyobjs.length; i++){
-        //debugger;
+
         if(polyobjs[i].dotProdPoint < 0){
             var p = polyobjs[i].points[0];
             if (p.z > clipPlane) {
@@ -131,14 +122,14 @@ export function drawLightPoint(light, context){
     var textdata = ("light: " + light.x + "," + light.y + "," + light.z)
     context.fillRect(light.sx, light.sy, 5, 5);
     context.font = "12px Arial";
-    context.fillStyle = "#FFFFFF";
-    context.fillText(textdata, light.sx, light.sy); 
+    context.fillStyle = "#111111";
+    context.fillText(textdata, 100, 30); 
     //console.log(light.x + ","+ light.y+"," + light.z+","+light.sx+","+light.sy);
 }
 
 export function drawFPS(context, text){
     context.font = "12px Arial";
-    context.fillStyle = "#111111";
+    context.fillStyle = "#000000";
     context.fillText(text, 100, 30);
 }
 

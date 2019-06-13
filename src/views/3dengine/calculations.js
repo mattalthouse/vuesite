@@ -25,6 +25,14 @@ export function normalizeNumber(val, max, min) { return (val - min) / (max - min
         //console.log("scale: " + scale + "z " + points[176].z);
         //return points;
 	}
+
+	export function projectSingle(p, fl, centerZ) {
+		var scale = fl / (fl + p.z + centerZ);
+
+		p.sx = (p.x * scale) + 400;
+		p.sy = (p.y * scale) + 300;
+
+	}
 	
 	export function dotProductInit(obj, cam){
 		//debugger;

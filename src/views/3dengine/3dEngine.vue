@@ -17,15 +17,20 @@
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateX"> Spin Rate X
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateY"> Spin Rate Y
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateZ"> Spin Rate Z
-				<br/>
+				<br/><br/>
 		<input type="checkbox" @click="renderPoints = !renderPoints" v-model="renderPoints"> Draw Points
 		<input type="checkbox" @click="renderLines = !renderLines" v-model="renderLines"> Draw Lines
 		<input type="checkbox" @click="renderNorms = !renderNorms" v-model="renderNorms"> Draw Normals
 		<input type="checkbox" @click="renderPolys = !renderPolys" v-model="renderPolys"> Draw Polys
 		<input type="checkbox" @click="renderFPS = !renderFPS" v-model="renderFPS"> Show FPS
-		<input type="checkbox" @click="useLightPoint = !useLightPoint" v-model="useLightPoint"> Use Light Point
+				<br/><br/>							
 		<input type="color" v-model="lineColor"> Line Color
 		<input type="range" min="0.1" max="5" step="0.1" v-model="lineThicc"> Line Width
+				<br/><br/>
+		<input type="checkbox" @click="useLightPoint = !useLightPoint" v-model="useLightPoint"> Use Light Point
+		<input type="number" v-model="light.x">Light X
+		<input type="number" v-model="light.y">Light Y
+		<input type="number" v-model="light.z">Light Z
 				<br/>
     <canvas id="canvas" width=800 height=600></canvas>
   </div>
@@ -34,7 +39,7 @@
 <script>
 import { readFile } from 'fs';
 import { loadVerts, loadNorms, loadLines, getFullPolyObj } from './modelLoading';
-import { project, dotProduct, dotProductInit, calcNormPts, lightingPointCalc } from './calculations';
+import { project, projectSingle, dotProduct, dotProductInit, calcNormPts, lightingPointCalc } from './calculations';
 import { drawPoints, drawLine, drawNormLine, drawPoly, drawFPS, drawLightPoint } from './drawing';
 import { translateModel, rotateX, rotateY, rotateZ, translateLight } from './movement';
 import { sampleModel1, sampleModel2, sampleModel3 } from './sampleModel';
@@ -116,7 +121,7 @@ export default {
 							dotProduct(this.polyObjs, this.cam);
 							if(this.useLightPoint){
 								lightingPointCalc(this.polyObjs, this.light);
-								project(this.light, this.fl, this.centerZ);
+								projectSingle(this.light, this.fl, this.centerZ);
 								drawLightPoint(this.light, canvas);
 							}
 							drawPoly(this.polyObjs, this.modelObj, canvas, this.clipPlane, this.useLightPoint);
