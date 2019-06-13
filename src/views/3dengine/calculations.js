@@ -69,6 +69,30 @@ export function normalizeNumber(val, max, min) { return (val - min) / (max - min
         });
         
         //return dotProdPoints;
+	}
+	
+	export function lightingPointCalc(objs, cam){
+		//debugger;
+		//var dotProdPoints = [];
+		//var cam = {x: 0, y: 0, z:-2000};
+		objs.forEach(obj => { 
+        
+            
+            var polyVec = {x: obj.centroid.x - obj.polyNormalPoint.x,
+                            y: obj.centroid.y - obj.polyNormalPoint.y,
+                            z: obj.centroid.z - obj.polyNormalPoint.z}
+                        
+            var camVec =  {x: cam.x - obj.centroid.x,
+                            y: cam.y - obj.centroid.y,
+                            z: cam.z - obj.centroid.z}
+                        
+            var dot = (polyVec.x * camVec.x) + (polyVec.y * camVec.y) + (polyVec.z * camVec.z);
+            obj.lightingPoint = dot;
+            
+
+        });
+        
+        //return dotProdPoints;
     }
     
     export function calcNormPts(obj){

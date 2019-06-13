@@ -2,6 +2,7 @@
   <div class="testcanvas">
     <h3>3D OBJ Renderer</h3>
 		<p>This is a test software renderer I made to explore the mathematic concepts behind rendering in 3D. Parses basic obj files exported from blender.</p>
+		<p>Special thanks to <a href="https://www.youtube.com/user/codingmath">Coding Math</a> and <a href="https://www.youtube.com/channel/UC-yuWVUplUJZvieEligKBkA">OneLoneCoder</a> for the inspiration</p>
 		<p>If you do not have a working .obj file handy, click one of the buttons below to download a file to use with this renderer.</p>
 		<button class="button3D" @click="loadEx1">Load Cube</button>
 		<button class="button3D" @click="loadEx2">Load Blender Monkey (Low Poly)</button>
@@ -22,6 +23,7 @@
 		<input type="checkbox" @click="renderNorms = !renderNorms" v-model="renderNorms"> Draw Normals
 		<input type="checkbox" @click="renderPolys = !renderPolys" v-model="renderPolys"> Draw Polys
 		<input type="checkbox" @click="renderFPS = !renderFPS" v-model="renderFPS"> Show FPS
+		<input type="checkbox" @click="useLightPoint = !useLightPoint" v-model="useLightPoint"> Use Light Point
 		<input type="color" v-model="lineColor"> Line Color
 		<input type="range" min="0.1" max="5" step="0.1" v-model="lineThicc"> Line Width
 				<br/>
@@ -32,9 +34,9 @@
 <script>
 import { readFile } from 'fs';
 import { loadVerts, loadNorms, loadLines, getFullPolyObj } from './modelLoading';
-import { project, dotProduct, dotProductInit, calcNormPts } from './calculations';
-import { drawPoints, drawLine, drawNormLine, drawPoly, drawFPS } from './drawing';
-import { translateModel, rotateX, rotateY, rotateZ } from './movement';
+import { project, dotProduct, dotProductInit, calcNormPts, lightingPointCalc } from './calculations';
+import { drawPoints, drawLine, drawNormLine, drawPoly, drawFPS, drawLightPoint } from './drawing';
+import { translateModel, rotateX, rotateY, rotateZ, translateLight } from './movement';
 import { sampleModel1, sampleModel2, sampleModel3 } from './sampleModel';
 //import './modelLoading';
 export default {
@@ -47,6 +49,8 @@ export default {
 			canvW: 3840,
 			canvH: 2160,
 			cam: {x: 0, y: 0, z:-2000},
+			light: {x: -500, y:-500, z: -500},
+			useLightPoint: false,
 			testx: 50,
 			spinRateX: 0.0,
 			spinRateY: 0.05,
@@ -72,6 +76,30 @@ export default {
 				var x = document.getElementById('canvas');
 				var canvas = x.getContext('2d');
 				canvas.clearRect(0, 0, 800, 600);
+
+	// document.body.addEventListener("keydown", function(event) {
+	// 	switch(event.keyCode) {
+	// 		case 87://w
+	// 				if(event.shiftKey)
+	// 					this.translateCoords(0, 50, 0);
+	// 				else
+	// 					this.translateCoords(0, 0, 50);
+	// 		 	break;
+	// 		case 65: // a
+	// 				this.translateCoords(-50, 0, 0);
+	// 			break;
+	// 		case 83: // s
+	// 				if(event.shiftKey)
+	// 					this.translateCoords(0, -50, 0);
+	// 				else
+	// 					this.translateCoords(0, 0, -50);
+	// 			break;
+	// 		case 68: // d
+	// 				this.translateCoords(50, 0, 0);
+	// 			break;
+	// 	}
+	// }.bind(this));
+
 				if(this.modelLoaded){
 					rotateY(this.spinRateY, this.modelObj, this.needsUpdate);
 					rotateX(this.spinRateX, this.modelObj, this.needsUpdate);
@@ -85,8 +113,13 @@ export default {
 						project(this.modelObj.polyNormalPoints, this.fl, this.centerZ);
 
 						if(this.renderPolys){
-							dotProduct(this.polyObjs, this.cam)
-							drawPoly(this.polyObjs, this.modelObj, canvas, this.clipPlane)
+							dotProduct(this.polyObjs, this.cam);
+							if(this.useLightPoint){
+								lightingPointCalc(this.polyObjs, this.light);
+								project(this.light, this.fl, this.centerZ);
+								drawLightPoint(this.light, canvas);
+							}
+							drawPoly(this.polyObjs, this.modelObj, canvas, this.clipPlane, this.useLightPoint);
 						}
 						if(this.renderPoints)
 							drawPoints(this.modelObj, canvas, this.clipPlane);
@@ -97,7 +130,7 @@ export default {
 							canvas.stroke();
 						}
 						if(this.renderNorms)
-							drawNormLine(this.modelObj, canvas, this.clipPlane)
+							drawNormLine(this.modelObj, canvas, this.clipPlane);
 
 
 					}
@@ -136,6 +169,10 @@ export default {
 			loadEx3: function(){
 				this.fileStr = sampleModel3();
 				this.populateModel();
+			},
+
+			translateCoords: function(x, y, z){
+				translateLight(x, y, z, this.light);
 			},
 
 			populateModel: function(){

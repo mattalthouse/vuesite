@@ -54,7 +54,7 @@ export function drawNormLine(obj, context, clipPlane) {
     };
 }
 
-export function drawPoly(polyobjs, obj, context, clipPlane) {
+export function drawPoly(polyobjs, obj, context, clipPlane, useLightPoint) {
     var max = getMaxOfArray(obj.dotProdPoints);
     var min = getMinOfArray(obj.dotProdPoints);
     //getFullPolyObj();
@@ -82,9 +82,15 @@ export function drawPoly(polyobjs, obj, context, clipPlane) {
                     }
 
                 }
-
+                if(useLightPoint){
+                //var tempDot = Math.round(normalizeNumber(polyobjs[i].lightingPoint, min, max) * 10)
+                var tempDot = Math.round(normalizeNumber(polyobjs[i].lightingPoint, min, max) * 200)
+                }
+                else{
+                    //use camera as light
                 //var tempDot = Math.round(normalizeNumber(polyobjs[i].dotProdPoint, min, max) * 10)
                 var tempDot = Math.round(normalizeNumber(polyobjs[i].dotProdPoint, min, max) * 200) //set scalar to 10 for rough shading, 200 for smooth
+                }
                 tempDot = tempDot.toString(16);
                 
                 var fillPolyColor = "#" + tempDot + tempDot + tempDot;  //smooth shading
@@ -117,6 +123,17 @@ export function drawPoints(obj, context, clipPlane){
             //context.fillText(text, p[i].sx, p[i].sy);
         }
     }
+}
+
+export function drawLightPoint(light, context){
+    var lightarray = [light];
+    //project(lightarray);
+    var textdata = ("light: " + light.x + "," + light.y + "," + light.z)
+    context.fillRect(light.sx, light.sy, 5, 5);
+    context.font = "12px Arial";
+    context.fillStyle = "#FFFFFF";
+    context.fillText(textdata, light.sx, light.sy); 
+    //console.log(light.x + ","+ light.y+"," + light.z+","+light.sx+","+light.sy);
 }
 
 export function drawFPS(context, text){

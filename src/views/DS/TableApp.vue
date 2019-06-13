@@ -1,7 +1,8 @@
 <template>
+    
     <div id="tableapp">
         <!--<h2 style="position:fixed;">All of the Tables</h2>-->
-        
+        <p>Data randomly generated using <a href="https://mockaroo.com/">Mockaroo</a></p>
         
         
         <app-table appTitle="Table 1" jsonSource="https://api.myjson.com/bins/t5x0u"></app-table>

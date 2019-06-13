@@ -16,6 +16,12 @@ export function translateModel(x, y, z) {
     needsUpdate = true;
 }
 
+export function translateLight(x, y, z, light) {
+    light.x += x;
+    light.y += y;
+    light.z += z;
+}
+
 export function rotateX(angle, obj, needsUpdate) {
     var cos = Math.cos(angle),
         sin = Math.sin(angle);
