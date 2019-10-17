@@ -2,13 +2,12 @@
   <div class="testcanvas">
     <h3>3D OBJ Renderer</h3>
 		<p>This is a test software renderer I made to explore the mathematic concepts behind rendering in 3D. Parses basic obj files exported from blender.</p>
-		<p>Special thanks to <a href="https://www.youtube.com/user/codingmath">Coding Math</a> and <a href="https://www.youtube.com/channel/UC-yuWVUplUJZvieEligKBkA">OneLoneCoder</a> for the inspiration</p>
+		<p>Thanks to <a href="https://www.youtube.com/user/codingmath">Coding Math</a> and <a href="https://www.youtube.com/channel/UC-yuWVUplUJZvieEligKBkA">OneLoneCoder</a> for the inspiration</p>
 		<p>If you do not have a working .obj file handy, click one of the buttons below to download a file to use with this renderer.</p>
 		<button class="button3D" @click="loadEx1">Load Cube</button>
 		<button class="button3D" @click="loadEx2">Load Blender Monkey (Low Poly)</button>
 		<button class="button3D" @click="loadEx3">Load Blender Monkey (High Poly)</button>
-	    <!-- <p><a href="./blender-monkey-hi.obj" download="blender-monkey-hi.obj">Click to download sample .obj</a></p> -->
-		<!-- <button @click="needsUpdate = true">Update</button> -->
+
 				<br/><br/><br/>
 		<input type="number" v-model="modelScale" width="30px"> Model Scale (Reload to change)
 		<button class="button3D" @click="populateModel">Reload Model</button>
@@ -18,19 +17,19 @@
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateY"> Spin Rate Y
 		<input type="range" min="0" max="0.5" step="0.01" v-model="spinRateZ"> Spin Rate Z
 				<br/><br/>
-		<input type="checkbox" @click="renderPoints = !renderPoints" v-model="renderPoints"> Draw Points
-		<input type="checkbox" @click="renderLines = !renderLines" v-model="renderLines"> Draw Lines
-		<input type="checkbox" @click="renderNorms = !renderNorms" v-model="renderNorms"> Draw Normals
-		<input type="checkbox" @click="renderPolys = !renderPolys" v-model="renderPolys"> Draw Polys
-		<input type="checkbox" @click="renderFPS = !renderFPS" v-model="renderFPS"> Show FPS
-				<br/><br/>							
-		<input type="color" v-model="lineColor"> Line Color
+		<input type="checkbox" class="checkbox3D" @click="renderPoints = !renderPoints" v-model="renderPoints"> Draw Points
+		<input type="checkbox" class="checkbox3D" @click="renderLines = !renderLines" v-model="renderLines"> Draw Lines
+		<input type="checkbox" class="checkbox3D" @click="renderNorms = !renderNorms" v-model="renderNorms"> Draw Normals
+		<input type="checkbox" class="checkbox3D" @click="renderPolys = !renderPolys" v-model="renderPolys"> Draw Polys
+		<input type="checkbox" class="checkbox3D" @click="renderFPS = !renderFPS" v-model="renderFPS"> Show FPS
+				<!-- <br/><br/>							 -->
+		<input type="color" class="button3D" v-model="lineColor"> Line Color
 		<input type="range" min="0.1" max="5" step="0.1" v-model="lineThicc"> Line Width
 				<br/><br/>
-		<input type="checkbox" @click="useLightPoint = !useLightPoint" v-model="useLightPoint"> Use Light Point
-		<input type="number" v-model="light.x">Light X
-		<input type="number" v-model="light.y">Light Y
-		<input type="number" v-model="light.z">Light Z
+		<input type="checkbox" class="checkbox3D" @click="useLightPoint = !useLightPoint" v-model="useLightPoint"> Use Light Point
+		<input type="number" v-model="light.x" min="-800" max="800">Light X
+		<input type="number" v-model="light.y" min="-800" max="800">Light Y
+		<input type="number" v-model="light.z" min="-800" max="800">Light Z
 				<br/>
     <canvas id="canvas" width=800 height=600></canvas>
   </div>

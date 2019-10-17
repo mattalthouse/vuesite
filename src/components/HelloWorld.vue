@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <h1> Home Page </h1>
-    <p> click above for some project examples </p>
+    <h1> Matt Althouse: Samples </h1>
+    <p> Testing out github pages as a place to put some work samples online. Click on the nav bar above for some project examples </p>
   </div>
 </template>
 

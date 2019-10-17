@@ -2,14 +2,7 @@
 <div class="parallax">
     <div id="Table">
         <app-header v-bind:title="appTitle" v-bind:subtitle="subtitle"></app-header>
-        <!--<button v-on:click="sortByValue('Name')">Sort by Name</button>
-    <button v-on:click="sortByValue('Occupation')">Sort by Occupation</button>
-    <button v-on:click="sortByValue('HireDate')">Sort by Hire Date</button>-->
-        <!--<p>
-        Json Source:
-        <input v-model="jsonSource" placeholder="Json Source" />
-        <button v-on:click="getJsonData()">Update</button>
-    </p>-->
+
         <button class="btn-table2" v-on:click="openModalAddCell()">Add New Entry</button>
         <span>
             <input v-model="searchTerm" v-on:change="searchTable()" placeholder="Search"/>
@@ -28,11 +21,7 @@
             </div>
             <div slot="body" v-if="showModalAddCell">
                 <h3 slot="header">New Cell:</h3>
-                <!--<span>
-                <input v-model="newName" placeholder="New Name" />
-                <input v-model="newOcc" placeholder="New Occupation" />
-                <input v-model="newHD" placeholder="New Hire Date" />
-            </span>-->
+
                 <span v-for="col in columnList">
                     {{col}}
                     <input size="25" v-model="newColEditData[col]" />
@@ -145,15 +134,6 @@ import { debug, isUndefined } from 'util';
                 showModalAddCell: false,
                 showModalEditCell: false,
                 editData: "",
-                //jsonSource: "https://api.myjson.com/bins/yqih2", //faked some data with https://mockaroo.com/schemas/new
-                //jsonSource: "https://api.myjson.com/bins/t5x0u",
-                //jsonSource: "https://api.myjson.com/bins/13069s"
-                //jsonSource: "https://api.myjson.com/bins/rridc"
-                //jsonSource:"https://api.myjson.com/bins/11yh0o"
-                //jsonSource: "https://api.myjson.com/bins/9qqns"
-                //jsonSource:"https://api.myjson.com/bins/16hkxk"
-                //jsonSource:"https://api.myjson.com/bins/108bd4"
-                //jsonSource:"https://api.myjson.com/bins/137p3s"
                 editApiPath: "",
 
 
@@ -212,11 +192,6 @@ import { debug, isUndefined } from 'util';
 
             },
             populateTableCells: function (data) {
-                //for (var i = 0; i < data.length; i++) {
-                //    this.TableCell.push({ "column": "Name", "value": data[i]['Name'], "header": false, "objID": i + 1, "colID": 0 })
-                //    this.TableCell.push({ "column": "Occupation", "value": data[i]['Occupation'], "header": false, "objID": i + 1, "colID": 1 })
-                //    this.TableCell.push({ "column": "Hire Date", "value": data[i]['Hire Date'], "header": false, "objID": i + 1, "colID": 2 })
-                //}
 
                 if (data[0] != undefined) {
                     for (var key in data[0]) {
@@ -262,9 +237,6 @@ import { debug, isUndefined } from 'util';
                     }
                 }
 
-                //for (var i = 0; i < this.TableCell.length; i++) {
-                //    console.log("tablecell: " + this.TableCell[i].value + " , " + this.TableCell[i].header + " , " + this.TableCell[i].objID)
-                //}
 
                 
             },
@@ -331,7 +303,6 @@ import { debug, isUndefined } from 'util';
                 var self = this;
                 var tempIDs = this.uniqueIDs;
 
-                //console.log(this.newColEditData);
 
                 tempIDs.sort(function (a, b) {
                     if (a < b) return -1;
@@ -464,19 +435,10 @@ import { debug, isUndefined } from 'util';
                 }
 
                 this.TableCell[editIndex].value = this.editData;
-                //var path = "http://localhost:7071/api/UpdateInsurance?data=" + editRow;
-                var path = "http://localhost:7071/api/UpdateInsurance";
+
                 this.submitData(path, editRow);
 
-                
-                //for (var i = 0; i < this.TableCell.length; i++) {
-                //    if (this.TableCell[i].objID === this.selectedCell[1].objID && this.TableCell[i].colID === this.selectedCell[1].colID) {
-                //        this.TableCell[i].value = this.editData;
-                //        this.editApiPath = "http://localhost:7071/api/UpdateInsurance?facID=10620&rate=" + this.editData;
-                //        //debugger;
-                //        this.submitData(this.editApiPath/*, { facID: 10620, rate: this.TableCell[i].value }*/)
-                //    }
-                //}
+            
 
                 this.closeModal();
                 this.editData = "";

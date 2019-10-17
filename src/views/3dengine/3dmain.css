@@ -11,7 +11,11 @@ h3 {
             background-color: #adadaa;
         }*/
 
-
+.checkbox3D{
+    padding: 2px;
+    margin-left: 10px;
+    margin-right: 1px;
+}
 .button3D {
     padding: 5px;
     padding-left: 8px;

@@ -3,11 +3,9 @@ body, html {
 }
 
 .parallax{
-      /* The image used */
-  background-image: url('backgroundcopy.jpg');
+  background-image: url('background_tri_color2.jpg');
 
-  /* Full height */
-  /* height: 100%;  */
+
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -85,8 +83,8 @@ button {
     color: white;
     font-family: 'Trebuchet MS';
     border-radius: 6px;
-    border-color: #c74d4d;
-    background-color: #c74d4d;
+    border-color: #1457ad;
+    background-color: #2f80a5;
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 1em;
@@ -96,8 +94,8 @@ button {
     button:hover {
         color: white;
         /*font-family: 'Trebuchet MS';*/
-        background-color: #fa9696;
-        border-color: #fa9696;
+        background-color: #8ef0f7;
+        border-color: #96e3fa;
         box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 7px 5px 0 rgba(0,0,0,0.19);
     }
 

@@ -15,7 +15,7 @@
 
 <style scoped>
     header {
-        background-color:firebrick;
+        background-color:rgb(53, 106, 150);
         padding: 5px;
     }
 
